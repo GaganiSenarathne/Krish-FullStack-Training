@@ -1,0 +1,81 @@
+Regular Code
+
+
+==============================================================
+01.
+
+@FunctionalInterface
+public interface vehicle {
+	
+	String getVehicleSpecification(String name);
+}
+
+public vehicleImpl implements vehicle {
+	
+	String getVehicleSpecification(String name) {
+
+		return name;
+	}
+}
+
+public static void main(String [] args) {
+	
+	vehicleImpl vehicle = new vehicleImpl();
+	vehicle.getVehicleSpecification(name);
+
+} 
+
+
+==============================================================
+
+
+02.
+
+@FunctionalInterface
+public interface rectangle {
+	
+	int calcArea(int w, int h);
+}
+
+public rectangleImpl implements rectangle {
+	
+	int calcArea(int w, int h) {
+
+		return w*h;
+	}
+}
+
+public static void main(String [] args) {
+	
+	rectangleImpl rectangle = new rectangleImpl();
+	rectangle.calcArea(w, h);
+
+} 
+
+
+==============================================================
+
+
+03. 
+
+
+@FunctionalInterface
+public interface company {
+	
+	void getEmployeeName(String EmpName);
+}
+
+public companyImpl implements company {
+	
+	int getEmployeeName(String EmpName) {
+
+		System.out.println("Employee name is "+ EmpName);
+	}
+}
+
+public static void main(String [] args) {
+
+	companyImpl com = new companyImpl();
+	com.getEmployeeName(empName);
+
+}
