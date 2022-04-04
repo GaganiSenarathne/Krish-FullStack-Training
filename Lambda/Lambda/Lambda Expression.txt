@@ -1,0 +1,49 @@
+Lambda Expression
+
+==============================================================
+
+01.
+
+@FunctionalInterface
+public interface vehicle {
+	
+	String getVehicleSpecification(String name);
+}
+
+public static void main(String [] args) {
+
+	vehicle v = name->name;
+
+}
+
+==============================================================
+
+
+02.
+
+@FunctionalInterface
+public interface rectangle {
+	
+	int calcArea(int w, int h);
+}
+
+public static void main(String [] args) {
+
+	rectangle r = (w, h)->w * h;
+
+}
+
+==============================================================
+
+03. 
+
+@FunctionalInterface
+public interface company {
+	
+	void getEmployeeName(String EmpName);
+}
+
+public static void main(String [] args) {
+
+	company com = EmpName -> System.out.println("Employee name is "+ EmpName);
+}
