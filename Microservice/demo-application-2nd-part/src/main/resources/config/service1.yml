@@ -1,0 +1,4 @@
+service:
+  greeting: This is from the server 1
+  
+  

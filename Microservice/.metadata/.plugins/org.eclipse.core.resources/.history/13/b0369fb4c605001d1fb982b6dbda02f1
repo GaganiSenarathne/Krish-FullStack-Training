@@ -1,0 +1,13 @@
+package com.example.demo.controller.service;
+
+import com.rentcloud.commons.model.Customer;
+
+public class CustomerServiceImpl implements CustomerService{
+
+	@Override
+	public Customer save(Customer customer) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

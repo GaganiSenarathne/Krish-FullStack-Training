@@ -1,0 +1,10 @@
+package com.example.demo.repository;
+
+import org.springframework.data.repository.Repository;
+
+import com.example.demo.model.Student;
+
+public interface StudentRepository extends Repository<Student, Integer>{
+	
+	Student save(Student student);
+}
