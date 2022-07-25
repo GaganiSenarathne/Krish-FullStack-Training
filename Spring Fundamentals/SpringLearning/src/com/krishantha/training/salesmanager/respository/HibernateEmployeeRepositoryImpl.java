@@ -10,8 +10,8 @@ public class HibernateEmployeeRepositoryImpl implements EmployeeRepository {
     public List<Employee> getAllEmployees(){
         List<Employee> employeeList = new ArrayList<>();
         Employee employee = new Employee();
-        employee.setEmployeeName("Chanuka");
-        employee.setEmployeeLocation("Homagama");
+        employee.setEmployeeName("Gagani");
+        employee.setEmployeeLocation("Kegalle");
         employeeList.add(employee);
         return employeeList;
     }
