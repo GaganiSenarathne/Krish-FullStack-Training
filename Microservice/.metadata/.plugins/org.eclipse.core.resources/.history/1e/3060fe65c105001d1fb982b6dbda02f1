@@ -1,6 +1,0 @@
-package com.rentcloud.commons.model;
-
-@Entity
-public class Customer {
-
-}
