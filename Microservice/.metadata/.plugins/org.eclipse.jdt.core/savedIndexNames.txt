@@ -1,4 +1,4 @@
-INDEX VERSION 1.131+E:\Virtusa\Training JAVA LP\Spring\.metadata\.plugins\org.eclipse.jdt.core
+INDEX VERSION 1.131+E:\Training JAVA LP\Spring\.metadata\.plugins\org.eclipse.jdt.core
 1447504170.index
 2503186597.index
 816186185.index
