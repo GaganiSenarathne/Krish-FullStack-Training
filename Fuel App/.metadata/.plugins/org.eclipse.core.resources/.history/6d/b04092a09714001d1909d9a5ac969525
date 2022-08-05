@@ -1,0 +1,13 @@
+package com.example.demo.service;
+
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.model.Schedule;
+
+
+public interface ScheduleService {
+	
+	public ResponseEntity<Schedule> saveSchedule(Schedule schedule);
+	public Schedule getOrderDetails(String fuelType, int fuelCapacity, String refId, int shedID);
+
+}

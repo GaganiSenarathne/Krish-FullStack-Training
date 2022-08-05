@@ -1,0 +1,19 @@
+package com.example.demo.model;
+
+import java.time.LocalDateTime;
+
+import org.springframework.data.annotation.Id;
+
+public class Schedule {
+	
+	@Id
+	private long id;
+	private LocalDateTime createdDate;
+	private LocalDateTime sheduledDate;
+	private String refID;
+	private int shedID;
+	
+	
+	
+
+}

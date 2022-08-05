@@ -1,0 +1,23 @@
+package com.example.demo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.demo.model.InventoryAvailable;
+import com.example.demo.service.InventoryAvailableService;
+
+@RestController
+public class InventoryAvailableController {
+
+	@Autowired
+	InventoryAvailableService availableService;
+	
+	
+	@PostMapping("/available")
+	public ResponseEntity<InventoryAvailable> saveAvailableFuel(@RequestBody InventoryAvailable inventoryAvailable) {
+		return availableService.saveFuelAvailable(inventoryAvailable);
+	}
+}

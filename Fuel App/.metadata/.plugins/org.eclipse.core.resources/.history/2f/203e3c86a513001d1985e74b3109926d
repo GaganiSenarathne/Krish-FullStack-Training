@@ -1,0 +1,32 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.model.InventoryAvailable;
+import com.example.demo.model.InventoryUsable;
+import com.example.demo.repository.InventoryAvailableRepository;
+
+public class InventoryUsableServiceImpl implements InventoryUsableService{
+
+	
+	@Autowired
+	InventoryAvailableRepository availableRepository;
+	
+	@Autowired
+	InventoryReservedService inventoryReservedService;
+	
+	
+	@Override
+	public ResponseEntity<InventoryUsable> saveFuelUsable(InventoryUsable inventoryUsable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InventoryAvailable getCapacity(String fuelType, int Capacity, String RefID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

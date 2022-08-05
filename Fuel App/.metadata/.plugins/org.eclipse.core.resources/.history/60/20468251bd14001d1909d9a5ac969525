@@ -1,0 +1,131 @@
+package com.example.demo.service;
+
+import java.util.Random;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.FindAndModifyOptions;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.InventoryAvailable;
+import com.example.demo.model.InventoryUsable;
+import com.example.demo.repository.InventoryAvailableRepository;
+import com.example.demo.repository.InventoryUsableRepository;
+
+@Service
+public class InventoryUsableServiceImpl implements InventoryUsableService{
+
+	
+	@Autowired
+	InventoryUsableRepository inventoryUsableRepository;
+	
+	@Autowired
+	InventoryReservedService inventoryReservedService;
+	
+	@Autowired
+	InventoryAvailableRepository availableRepository;	
+	
+	@Autowired
+	MongoTemplate mongoTemplate;
+	
+	
+	@Override
+	public ResponseEntity<InventoryUsable> saveFuelUsable(InventoryUsable inventoryUsable) {
+		
+		try {
+//			Saving Available Fuel QTY
+			inventoryUsableRepository.save(inventoryUsable);
+		
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+	
+		return ResponseEntity.status(HttpStatus.OK).body(inventoryUsable);
+	}
+
+
+	@Override
+	public InventoryUsable getUsableCapacity(String fuelType, int Capacity, String RefID, int shedID) {
+
+		InventoryAvailable inventoryAvailable = availableRepository.findByFuelType(fuelType);		
+		InventoryUsable inventoryUsable = inventoryUsableRepository.findByFuelType(fuelType);
+		
+		InventoryUsable usable = new InventoryUsable();
+		
+		usable.setFuelType(fuelType);
+		
+		if(inventoryUsable == null) {
+			
+			int availableCapacity = inventoryAvailable.getQty();
+			
+//			String status = "Allocated";
+			int usableCapacity  = availableCapacity - Capacity;
+			
+			usable.setQty(usableCapacity);
+			
+			Random random = new Random();
+			int id  = random.nextInt(2500);
+			
+			usable.setId(id);
+			saveFuelUsable(usable);
+			
+		} else {
+			
+			int existUsableCapacity = inventoryUsable.getQty();
+			
+//			String status = "Allocated";
+			int usableCapacity  = existUsableCapacity - Capacity;
+			
+			usable.setQty(usableCapacity);
+			
+			updateFuelUsable(inventoryUsable, usableCapacity);
+		}
+		
+		inventoryReservedService.getFromInventoryAvailable(RefID, fuelType, Capacity, shedID);
+		
+		// if(capacity>=fuelCapacity){
+			 
+//			// Order newOrder = getOrder(orderRefeId, "Allocated");
+			 
+//				//getOrder(orderRefeId, status);
+//		// }
+				
+		return inventoryUsable;
+	}
+
+
+	@Override
+	public ResponseEntity<InventoryUsable> updateFuelUsable(InventoryUsable inventoryUsable, int usableCapacity) {
+		
+		try {
+//			Saving Usable Fuel QTY
+			Query query = new Query();			
+			query.addCriteria(Criteria.where("fuelType").is(inventoryUsable.getFuelType()));
+			
+			Update update = new Update();
+			update.set("qty", usableCapacity);
+			
+			InventoryUsable usable = mongoTemplate.findAndModify(
+					query, update, 
+					new FindAndModifyOptions().returnNew(true), InventoryUsable.class);
+			
+			System.out.println("usable QTY - " + usable);
+			
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+	
+		return ResponseEntity.status(HttpStatus.OK).body(inventoryUsable);
+		
+	}
+
+}

@@ -1,0 +1,38 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.model.InventoryAvailable;
+import com.example.demo.model.InventoryUsable;
+import com.example.demo.repository.InventoryAvailableRepository;
+import com.example.demo.repository.InventoryUsableRepository;
+
+public class InventoryUsableServiceImpl implements InventoryUsableService{
+
+	
+	@Autowired
+	InventoryUsableRepository inventoryUsableRepository;
+	
+	@Autowired
+	InventoryReservedService inventoryReservedService;
+	
+	
+	@Override
+	public ResponseEntity<InventoryUsable> saveFuelUsable(InventoryUsable inventoryUsable) {
+		
+		try {
+//			Saving Available Fuel QTY
+			inventoryUsableRepository.save(inventoryUsable);
+		
+		}catch(Exception e) {
+			
+			e.printStackTrace();
+			
+		}
+	
+		return ResponseEntity.status(HttpStatus.OK).body(inventoryUsable);
+	}
+
+}

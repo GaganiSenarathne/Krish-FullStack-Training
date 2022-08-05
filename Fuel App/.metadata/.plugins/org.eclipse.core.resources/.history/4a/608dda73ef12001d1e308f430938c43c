@@ -1,0 +1,76 @@
+package com.example.demo.service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
+import java.util.UUID;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.model.Order;
+import com.example.demo.repository.OrderRepository;
+
+public class OrderServiceImpl implements OrderService{
+	
+	
+	@Autowired
+	OrderRepository orderRepository;
+
+	@Override
+	public ResponseEntity<Order> saveOrder(Order order) {
+		
+//		Generating unique ID for the reference ID
+		String refId  = UUID.randomUUID().toString();
+		
+		try {
+			
+//			Setting the Reference ID, sending it to the KAFKA and saving it in the Database
+			order.setRefId(refId);
+//			kafkaTemplate.send(KafkaTopicConfig.MESSAGE_TOPIC, order);
+			orderRepository.save(order);
+			
+		}catch(Exception e) {
+			
+		}
+		
+		return ResponseEntity.status(HttpStatus.OK).body(order);
+	}
+
+	@Override
+	public ResponseEntity<Order> orderReceived(int id, String status) {
+		
+		Optional<Order> byId = orderRepository.findById(id);
+		
+//		If the order is exist 
+		if(byId.isPresent()) {
+			Order order = byId.get();
+			
+//			Saving the order by setting the status
+			order.setStatus(status);
+			
+			orderRepository.save(order);
+			
+			return ResponseEntity.status(HttpStatus.OK).body(order);
+			
+		}else { // If the order is not exist
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@Override
+	public ResponseEntity<List<Order>> getOrderByShedID(int shedId) {
+		
+//		Searching order by the shed ID 
+		return ResponseEntity.status(HttpStatus.OK).body(orderRepository.findByShedId(shedId));
+	}
+
+	@Override
+	public ResponseEntity<List<Order>> getAllOrders() {
+		
+//		Getting all the orders
+		return ResponseEntity.status(HttpStatus.OK).body(orderRepository.findAll());
+	}
+
+}

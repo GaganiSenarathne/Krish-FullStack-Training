@@ -1,0 +1,28 @@
+package com.example.demo.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.InventoryReserved;
+import com.example.demo.repository.InventoryReservedRepository;
+
+@Service
+public class InventoryReservedServiceImpl implements InventoryReservedService{
+
+	
+	@Autowired
+	InventoryReservedRepository inventoryReservedRepository;
+	
+	@Override
+	public InventoryReserved saveReservedInventory(InventoryReserved inventoryReserved) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InventoryReserved getFromInventoryAvailable(int orderRefId, String fuelType, int fuelCapacity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

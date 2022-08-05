@@ -1,0 +1,63 @@
+package com.example.demo.model;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "InventoryReserved")
+public class InventoryReserved {
+	
+	@Id
+	private int id;
+	private String refID;
+	private String fuelType;
+	private int qty;
+	
+	public InventoryReserved() {}
+
+	public InventoryReserved(int id, String refID, String fuelType, int qty) {
+		super();
+		this.id = id;
+		this.refID = refID;
+		this.fuelType = fuelType;
+		this.qty = qty;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getRefID() {
+		return refID;
+	}
+
+	public void setRefID(String refID) {
+		this.refID = refID;
+	}
+
+	public String getFuelType() {
+		return fuelType;
+	}
+
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+	@Override
+	public String toString() {
+		return "InventoryReserved [id=" + id + ", refID=" + refID + ", fuelType=" + fuelType + ", qty=" + qty + "]";
+	}
+	
+	
+}

@@ -1,0 +1,23 @@
+package com.example.demo.service;
+
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.model.InventoryAvailable;
+
+public class InventoryAvailableServiceImpl implements InventoryAvailableService{
+
+	
+	
+	@Override
+	public ResponseEntity<InventoryAvailable> saveAvailableFuel(InventoryAvailable inventoryAvailable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public InventoryAvailable getCapacity(String fuelType, int Capacity, String RefID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

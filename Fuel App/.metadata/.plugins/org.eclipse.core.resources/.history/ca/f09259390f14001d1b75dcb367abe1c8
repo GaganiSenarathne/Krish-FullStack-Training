@@ -1,0 +1,49 @@
+package com.example.demo.service;
+
+import java.sql.Date;
+import java.time.Instant;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.stereotype.Service;
+
+import com.example.demo.model.InventoryReserved;
+import com.example.demo.repository.InventoryReservedRepository;
+
+@Service
+public class InventoryReservedServiceImpl implements InventoryReservedService{
+
+	
+	@Autowired
+	InventoryReservedRepository inventoryReservedRepository;
+	
+	@Autowired
+    private MongoTemplate mongoTemplate;
+	
+	private MongoOperations mongoOperations;
+	
+	@Override
+	public InventoryReserved saveReservedInventory(InventoryReserved inventoryReserved) {
+
+		return inventoryReservedRepository.save(inventoryReserved);
+	}
+
+	@Override
+	public InventoryReserved getFromInventoryAvailable(String orderRefId, String fuelType, int fuelCapacity) {
+		InventoryReserved inventoryReserved = new InventoryReserved();
+		
+		long id = Instant.now().getEpochSecond();
+		inventoryReserved.setId(id);
+		inventoryReserved.setRefID(orderRefId);
+		inventoryReserved.setFuelType(fuelType);
+		inventoryReserved.setQty(fuelCapacity);
+		inventoryReserved.setDateTime(null);
+		return saveReservedInventory(inventoryReserved);
+	}
+
+
+}

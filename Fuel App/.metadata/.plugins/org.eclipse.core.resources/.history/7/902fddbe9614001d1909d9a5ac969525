@@ -1,0 +1,33 @@
+package com.example.demo.service;
+
+import java.time.Instant;
+import java.time.LocalDateTime;
+
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.model.Schedule;
+
+public class ScheduleServiceImpl implements ScheduleService{
+
+	@Override
+	public ResponseEntity<Schedule> saveSchedule(Schedule schedule) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Schedule getOrderDetails(String fuelType, int fuelCapacity, String refId, int shedID) {
+
+		Schedule schedule = new Schedule();
+		LocalDateTime localDateTime = LocalDateTime.now();
+		
+		long id = Instant.now().getEpochSecond();
+		schedule.setId(id);
+		schedule.setRefID(refId);
+		schedule.setCreatedDate(localDateTime);
+		schedule.setShedID(shedID);
+		schedule.setSheduledDate(null);
+		return null;
+	}
+
+}

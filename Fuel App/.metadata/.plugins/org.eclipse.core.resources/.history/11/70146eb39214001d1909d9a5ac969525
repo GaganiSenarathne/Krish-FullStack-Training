@@ -1,0 +1,5 @@
+package com.example.demo.kafkaConfig;
+
+public class KafkaConsumer {
+
+}

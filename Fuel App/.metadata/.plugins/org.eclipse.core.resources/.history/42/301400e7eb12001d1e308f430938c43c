@@ -1,0 +1,83 @@
+package com.example.demo.model;
+
+import org.springframework.data.annotation.Id;
+
+public class Order {
+	
+	@Id
+	private int RefId;
+	private String shedName;
+	private int shedId;
+	private String location;
+	private int capacity;
+	private String fuelType;
+	private String status = "Pending...";
+	
+	
+	
+	
+	public Order(int refId, String shedName, int shedId, String location, int capacity, String fuelType,
+			String status) {
+		super();
+		RefId = refId;
+		this.shedName = shedName;
+		this.shedId = shedId;
+		this.location = location;
+		this.capacity = capacity;
+		this.fuelType = fuelType;
+		this.status = status;
+	}
+	
+	public int getRefId() {
+		return RefId;
+	}
+	public void setRefId(int refId) {
+		RefId = refId;
+	}
+	public String getShedName() {
+		return shedName;
+	}
+	public void setShedName(String shedName) {
+		this.shedName = shedName;
+	}
+	public int getShedId() {
+		return shedId;
+	}
+	public void setShedId(int shedId) {
+		this.shedId = shedId;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public int getCapacity() {
+		return capacity;
+	}
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
+	}
+	public String getFuelType() {
+		return fuelType;
+	}
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+	
+	
+
+}

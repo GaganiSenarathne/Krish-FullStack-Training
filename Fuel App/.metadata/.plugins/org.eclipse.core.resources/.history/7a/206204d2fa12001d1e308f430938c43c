@@ -1,0 +1,5 @@
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://GaganiSenarathne:ABC123@clusterfuel.m6veziy.mongodb.net/?retryWrites=true&w=majority
+      database: 

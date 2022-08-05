@@ -1,0 +1,21 @@
+package com.example.demo.service;
+
+import org.springframework.http.ResponseEntity;
+
+import com.example.demo.model.Schedule;
+
+public class ScheduleServiceImpl implements ScheduleService{
+
+	@Override
+	public ResponseEntity<Schedule> saveSchedule(Schedule schedule) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Schedule getUsableCapacity(String fuelType, int fuelCapacity, String refId, int shedID) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
