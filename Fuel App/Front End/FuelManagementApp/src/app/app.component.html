@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+
+<body>
+    <div class="container">
+        <button class="btn btn-primary mt-5" data-toggle="modal" data-target="#addOrderModal">Add an Order</button>
+        <div id="buttonCotainer"></div>
+        <table class="table table-dark table-hover align-middle caption-top">
+            <caption class="text-center mt-5 mb-5">List of the Orders</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Reference ID</th>
+                    <th scope="col">Shed Name</th>
+                    <th scope="col">Shed ID</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">Fuel Type</th>
+                    <th scope="col">Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let orders of order">
+                    <td>{{orders?.refId}}</td>
+                    <td>{{orders?.shedName}}</td>
+                    <td>{{orders?.shedId}}</td>
+                    <td>{{orders?.location}}</td>
+                    <td>{{orders?.fuelType}}</td>
+                    <td>{{orders?.capacity}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addOrderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <form #addForm="ngForm" (ngSubmit)="onAddOrder(addForm)">
+                        <div class="container mt-5 mb-5 d-flex justify-content-center">
+                            <div class="card px-1 py-4">
+                                <div class="card-body">
+                                    <h5 class="card-title mb-4 text-center">Order Information</h5>
+                                    <h6 class="information mt-6">Please provide following information about the order
+                                    </h6>
+                                    <div class="row mb-3 mt-4">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="shedname">Shed Name: </label>
+                                                <input class="form-control" type="text" placeholder="Shed Name" ngModel
+                                                    name="shedName" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="shedid">Shed ID: </label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" placeholder="Shed ID"
+                                                        ngModel name="shedId" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="shedid">Location: </label>
+                                                <div class="input-group">
+                                                    <input class="form-control" type="text" placeholder="Location"
+                                                        ngModel name="location" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="fuelType">Fuel Type: </label>
+                                                <div class="input-group">
+                                                    <select class="form-control" ngModel name="fuelType" required>
+                                                        <!-- <option>Select an Option</option> -->
+                                                        <option value="Octane 92">Octane 92</option>
+                                                        <option value="Octane 95">Octane 95</option>
+                                                        <option value="Diesel">Diesel</option>
+                                                        <option value="Super Diesel">Super Diesel</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label for="shedid">Capacity: </label>
+                                                <div class="input-group">
+                                                    <select class="form-control" ngModel name="capacity" required>
+                                                        <!-- <option>Select an Option</option> -->
+                                                        <option value="3300">3300</option>
+                                                        <option value="6600">6600</option>
+                                                        <option value="13200">13200</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer mb-3">
+                                        <div class="d-flex flex-column text-center px-5 mt-3">
+                                            <small class="agree-text">By confirming this order your Fuel</small>
+                                            <a href="#" class="terms">Terms & Conditions</a>
+                                        </div>                                    
+                                        <div class="">
+                                            <button [disabled]="addForm.invalid" type="submit"
+                                                class="btn btn-primary">Add the Order</button>
+                                        </div>
+                                        <div class="">
+                                            <button type="button" id="add-order-close" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
