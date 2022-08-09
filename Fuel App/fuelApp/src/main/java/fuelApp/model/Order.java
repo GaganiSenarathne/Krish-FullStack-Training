@@ -12,7 +12,7 @@ public class Order {
 	
 	@Id 
 	private long id;
-	private String RefId;
+	private String refId;
 	private String shedName;
 	private int shedId;
 	private String location;
@@ -31,7 +31,7 @@ public class Order {
 			LocalDateTime dateTime, String status) {
 		super();
 		this.id = id;
-		RefId = refId;
+		this.refId = refId;
 		this.shedName = shedName;
 		this.shedId = shedId;
 		this.location = location;
@@ -51,10 +51,10 @@ public class Order {
 	}
 
 	public String getRefId() {
-		return RefId;
+		return refId;
 	}
 	public void setRefId(String refId) {
-		RefId = refId;
+		this.refId = refId;
 	}
 	public String getShedName() {
 		return shedName;
@@ -103,7 +103,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [id=" + id + ", RefId=" + RefId + ", shedName=" + shedName + ", shedId=" + shedId + ", location="
+		return "Order [id=" + id + ", RefId=" + refId + ", shedName=" + shedName + ", shedId=" + shedId + ", location="
 				+ location + ", capacity=" + capacity + ", fuelType=" + fuelType + ", dateTime=" + dateTime
 				+ ", status=" + status + "]";
 	}

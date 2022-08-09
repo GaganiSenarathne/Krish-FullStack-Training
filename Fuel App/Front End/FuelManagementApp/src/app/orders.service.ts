@@ -14,10 +14,10 @@ export class OrdersService {
     constructor(private http: HttpClient) { }
 
     public getAllOrders(): Observable < Orders[] > {
-        return this.http.get<Orders[]>(`${this.apiServerURL}api/v1/order`);
+        return this.http.get<Orders[]>(`${this.apiServerURL}8080/api/v1/order`);
     }
 
     public addAnOrder(order: Orders): Observable < Orders > {
-        return this.http.post<Orders>(`${this.apiServerURL}api/v1/order`, order);
+        return this.http.post<Orders>(`${this.apiServerURL}8080/api/v1/order`, order);
     }
 }

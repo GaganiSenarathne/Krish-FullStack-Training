@@ -2,11 +2,16 @@ package com.example.demo.service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.kafkaConfig.KafkaTopic;
 import com.example.demo.model.Schedule;
 import com.example.demo.repository.ScheduleRepository;
 
@@ -16,6 +21,10 @@ public class ScheduleServiceImpl implements ScheduleService{
 
 	@Autowired
 	ScheduleRepository repository;
+	
+	@Autowired
+	KafkaTemplate<String, Schedule> kafkaTemplate;
+	
 	
 	@Override
 	public Schedule saveSchedule(Schedule schedule) {
@@ -43,8 +52,16 @@ public class ScheduleServiceImpl implements ScheduleService{
 		schedule.setSheduledDate(futureLocalDateTime);
 		
 		saveSchedule(schedule);
+		kafkaTemplate.send(KafkaTopic.MESSAGE_TOPIC, schedule);
 		
 		return schedule;
+	}
+	
+	@Override
+	public ResponseEntity<List<Schedule>> getAllScheduledOrders() {
+		
+//		Getting all the orders
+		return ResponseEntity.status(HttpStatus.OK).body(repository.findAll());
 	}
 
 }

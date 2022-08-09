@@ -1,6 +1,9 @@
 server:
   port: 8081
 
+kafka:
+  bootstrap-servers: 9092
+
 spring:
   data:
     mongodb:

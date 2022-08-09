@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.InventoryReserved;
+import fuelApp.model.InventoryReserved;
 
 public interface InventoryReservedService {
 

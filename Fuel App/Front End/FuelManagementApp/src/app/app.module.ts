@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { OrdersService } from './orders.service';
+import { DispatchService } from './dispatch.service';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule
   ],
   providers: [
-    OrdersService
+    OrdersService,
+    DispatchService
   ],
   bootstrap: [AppComponent]
 })
